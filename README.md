@@ -75,7 +75,7 @@ Notes:
 | Reset every password that was stored in Thunderbird and Edge on this PC, and review those accounts for suspicious logins | The attacker already has these logins and can use them immediately |
 | Block 45[.]56[.]99[.]101 and 204[.]11[.]58[.]28, and review traffic to savory[.]com[.]bd and mail[.]transgear[.]in | Cuts the payload download and the data-exfiltration paths |
 | Report the sending mailbox (marketing[@]transgear[.]in) to its provider | Shuts down the channel the stolen data was sent through |
-| Clean or reimage the PC, and find out how the file got there | Removes the malware and closes the initial entry route |
+| Clean or re-image the PC, and find out how the file got there | Removes the malware and closes the initial entry route |
 | Alert on workstations that send unencrypted SMTP to outside mail servers | Would catch this behaviour early in future |
 | Do not block api[.]ipify[.]org on its own | It is a legitimate service, and blocking it causes false positives |
 
@@ -84,3 +84,14 @@ Notes:
 The packet capture and the quiz questions are from the Unit 42 Wireshark Quiz, January 2023 (Palo Alto Networks): https://unit42.paloaltonetworks.com/january-wireshark-quiz/
 
 The capture is not included in this repository, because it contains a malware payload. The analysis and write-up are my own.
+
+
+##Evidence
+
+**Malware download (HTTP, filter: `http`)**
+
+![HTTP request and response for /sav/Ztvfo.png](screenshots/01-http-request.png)
+
+**Exfiltration over SMTP (filter: `smtp.req`, login packets hidden)**
+
+![SMTP commands from the victim to the mail server](screenshots/02-smtp-session.png)
